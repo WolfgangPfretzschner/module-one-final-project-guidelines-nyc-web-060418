@@ -7,6 +7,6 @@ class CreateTeams < ActiveRecord::Migration[5.0]
       t.integer :group_id
       t.string :group_letter
     end
-
+    # add_index :teams, :team_num, unique: true
   end
 end

@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
 
+  belongs_to :match
+
   def self.create_events_data
     self.destroy_all
     Match.destroy_all
