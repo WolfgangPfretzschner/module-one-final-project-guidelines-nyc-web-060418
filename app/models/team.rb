@@ -47,25 +47,18 @@ class Team < ActiveRecord::Base
     end.flatten
   end
 
-
   def get_events
-    puts "What statistic would you like to see?"
+    puts "What events would you like to see? Please write out your choice from the options."
     puts ""
-    puts "         attempts_on_goal  |   on_target       |   off_target
-            blocked           |   woodwork        |   corners
-            offsides          |   ball_possession |   pass_accuracy
-            num_passes        |   passes_completed|   distance_covered
-            balls_recovered   |   tackles         |   clearances
-            yellow_cards      |   red_cards       |   fouls_committed"
+    puts " goal   |    yellow_card    |   red_card"
+
 
     input = gets.chomp
     outp = input
     input = input.to_sym
 
-
     arr = []
-
-     res = self.get_match_events.each do |te|
+    res = self.get_match_events.each do |te|
        # binding.pry
       if te.country == @@user_t_name
          arr << te[input]
@@ -73,7 +66,6 @@ class Team < ActiveRecord::Base
          # binding.pry
       end
     end
-
     puts "============================================== "
     puts ""
     puts "#{@@user_t_name} has #{arr.length} #{outp}."
@@ -81,10 +73,8 @@ class Team < ActiveRecord::Base
     puts ""
   end
 
-
-
-  def get_single_country
-    puts "What statistic would you like to see?"
+  def get_match_stats
+    puts "What statistic would you like to see? Please write out your choice from the options."
     puts ""
     puts "         attempts_on_goal  |   on_target       |   off_target
             blocked           |   woodwork        |   corners
@@ -97,10 +87,8 @@ class Team < ActiveRecord::Base
     outp = input
     input = input.to_sym
 
-
     added_result = 0
-
-     res = self.get_match_statistics.each do |te|
+    res = self.get_match_statistics.each do |te|
       if te.country == @@user_t_name
         added_result += te[input]
       end
