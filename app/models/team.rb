@@ -1,7 +1,6 @@
 class Team < ActiveRecord::Base
   # self.primary_key = 'match_id'
 
-
   has_many :matches
   has_many :match_statistics, through: :matches
   has_many :events, through: :matches
