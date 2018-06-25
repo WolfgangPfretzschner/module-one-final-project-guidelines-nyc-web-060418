@@ -21,10 +21,10 @@ def country_list
 end
 
 def getting_country_from_user(answer)
-  @@users_team = Team.find_by team_id: answer
-  @@user_t_name = @@users_team.country
+  $users_team = Team.find_by team_id: answer
+  $user_t_name = $users_team.country
   puts "================================================"
-  puts "You picked #{@@user_t_name}!"
+  puts "You picked #{$user_t_name}!"
 end
 
 def input
@@ -34,13 +34,13 @@ end
 
 
 def call_stats
-    @@users_team.get_match_stats
+    $users_team.get_match_stats
 end
 
 def call_events
-  @@users_team.get_events
+  $users_team.get_events
 end
 
 def exit_message
-  puts "Thank you and viva #{@@user_t_name}!"
+  puts "Thank you and viva #{$user_t_name}!"
 end

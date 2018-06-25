@@ -6,7 +6,7 @@ class Team < ActiveRecord::Base
   has_many :events, through: :matches
 
 
-  @@user_t_name = nil
+  $user_t_name = nil
 
   def self.create_team_data
 
@@ -49,25 +49,25 @@ class Team < ActiveRecord::Base
   def get_events
     puts "What events would you like to see? Please write out your choice from the options."
     puts ""
-    puts " goal   |    yellow_card    |   red_card"
+    puts " goal   |    yellow-card    |   red-card"
 
 
     input = gets.chomp
-    outp = input
-    input = input.to_sym
+
 
     arr = []
     res = self.get_match_events.each do |te|
-       # binding.pry
-      if te.country == @@user_t_name
-         arr << te[input]
-         arr
-         # binding.pry
+      # binding.pry
+      if te.country == $user_t_name && te.type_of_event == input
+          arr << te.type_of_event
+          # binding.pry
+          arr
+
       end
     end
     puts "============================================== "
     puts ""
-    puts "#{@@user_t_name} has #{arr.length} #{outp}."
+    puts "#{$user_t_name} has #{arr.length} #{input}."
     puts ""
     puts ""
   end
@@ -88,7 +88,7 @@ class Team < ActiveRecord::Base
 
     added_result = 0
     res = self.get_match_statistics.each do |te|
-      if te.country == @@user_t_name
+      if te.country == $user_t_name
         added_result += te[input]
       end
     added_result
@@ -96,7 +96,7 @@ class Team < ActiveRecord::Base
 
     puts "============================================== "
     puts ""
-    puts "#{@@user_t_name} has #{added_result} #{outp}."
+    puts "#{$user_t_name} has #{added_result} #{outp}."
     puts ""
     puts ""
   end

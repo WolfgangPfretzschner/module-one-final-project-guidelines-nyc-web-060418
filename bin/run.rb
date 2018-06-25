@@ -15,7 +15,7 @@ loop do
     break
   else
     getting_country_from_user(answer)
-  
+
     call_stats
 
     call_events
